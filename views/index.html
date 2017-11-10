@@ -4,14 +4,17 @@
         <script type="module" href="/scripts/main.js"></script>
         <script type="module" href="/scripts/logHistoryService.js"></script>
         <script type="module">
-                import IndexController from "/scripts/main.js"
+                import {indexCtrl} from "/scripts/main.js"
+                //get log history then subscribe to web socket messages
                 document.addEventListener("DOMContentLoaded", async ()=>{
-                    await IndexController.getLog(document.querySelector("#content"));
+                    const element = document.querySelector("#content");
+                    await indexCtrl.getLog(element);
+                    indexCtrl.connectToWebSocketServer(element)
                 });
         </script>
         <link rel="stylesheet" type="text/css" href="/styles/main.css">
     </head>
-    <body id="content">
-        
+    <body class="messageLog">
+        <textarea id="content" rows="30" cols="60" class="centered"></textarea>
     </body>
 </html>

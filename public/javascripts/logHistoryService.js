@@ -11,7 +11,7 @@ const getFormattedLog = async ()=>{
 }
 const getLogText = ()=>{
     return fetch('/log')
-    .then((response)=>response.text())
+    .then((response)=>response.text(), (error)=>console.log(error));
 } 
 const formatLogText = (text)=>{
     return text;
