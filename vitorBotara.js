@@ -1,4 +1,7 @@
 const fs = require('fs');
+const eventEmmitter = require('./eventEmmiter.js');
+const emmiter = eventEmmitter.emmiter;
+const webSocketServer = require('./websockerServer.js');
 
 const random = ()=>{
     let x = Math.random();
@@ -34,6 +37,7 @@ const ispis = ()=>{
         let poruka = "Vitor Tomic: " + izjava() + "\t\t" + new Date().toLocaleString('en-US', { hour: 'numeric',minute:'numeric', hour12: true })
         console.log(poruka);
         writeLog(poruka).then((success)=>{
+            emmiter.emit('message',poruka);
             ispis();
         }, (error)=>{
             console.log('Error writing to log.txt');
