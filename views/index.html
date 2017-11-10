@@ -7,9 +7,14 @@
                 import {indexCtrl} from "/scripts/main.js"
                 //get log history then subscribe to web socket messages
                 document.addEventListener("DOMContentLoaded", async ()=>{
-                    const element = document.querySelector("#content");
-                    await indexCtrl.getLog(element);
-                    indexCtrl.connectToWebSocketServer(element)
+                    try{
+                        const element = document.querySelector("#content");
+                        await indexCtrl.getLog(element);
+                        indexCtrl.connectToWebSocketServer(element);
+                    }
+                    catch(error){
+                        console.log("Error connecting to server")
+                    }
                 });
         </script>
         <link rel="stylesheet" type="text/css" href="/styles/main.css">
