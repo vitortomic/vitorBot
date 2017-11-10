@@ -1,0 +1,17 @@
+<html>
+    <head>
+        <title>Vitor Bot</title>
+        <script type="module" href="/scripts/main.js"></script>
+        <script type="module" href="/scripts/logHistoryService.js"></script>
+        <script type="module">
+                import IndexController from "/scripts/main.js"
+                document.addEventListener("DOMContentLoaded", async ()=>{
+                    await IndexController.getLog(document.querySelector("#content"));
+                });
+        </script>
+        <link rel="stylesheet" type="text/css" href="/styles/main.css">
+    </head>
+    <body id="content">
+        
+    </body>
+</html>
