@@ -6,9 +6,12 @@ const wss = new WebSocket.Server({port: 9001});
 wss.on('connection', (connection)=>{
     let uuid = uuidv4();
     console.log('Client connected with UUID: ' + uuid);
+    connection.on('message', (message)=>{
+        console.log('Client ID ' + uuid + ' says: ' + message);
+    });
     connection.on('close', (connection)=>{
         console.log('Client with uuid: ' + uuid + " disconnected")
-    })
+    });
 });
 
 wss.broadcast = (data)=>{
