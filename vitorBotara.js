@@ -1,7 +1,7 @@
 const fs = require('fs');
 const eventEmmitter = require('./eventEmmiter.js');
 const emmiter = eventEmmitter.emmiter;
-const webSocketServer = require('./websockerServer.js');
+const webSocketServer = require('./webSocketServer.js');
 const webServer = require('./webServer');
 const messageGenerator = require('./messageGenerator.js');
 
