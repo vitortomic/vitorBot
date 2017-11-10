@@ -2,39 +2,17 @@ const fs = require('fs');
 const eventEmmitter = require('./eventEmmiter.js');
 const emmiter = eventEmmitter.emmiter;
 const webSocketServer = require('./websockerServer.js');
+const webServer = require('./webServer');
+const messageGenerator = require('./messageGenerator.js');
 
-const random = ()=>{
-    let x = Math.random();
-    return x >= 0.5 ? true : false;
-}
-
-const randomInt = ()=>{
-    return Math.floor(Math.random() * 10);
-}
-
-const izjava = ()=>{
-    return random() ? botara() : botara2();
-}
-
-const botara = ()=>{
-    return random() ? ayy() : "Xd";  
-}
-
-const botara2 = ()=>{
-    return random() ? "rofl" : "ha" + "ha".repeat(randomInt())
-}
-
-const ayy = ()=>{
-    return "ay" + "y".repeat(randomInt());
-}
-
+//random millisecond value 0-10000
 const randomVreme = ()=>{
     return Math.floor(10000 * Math.random());
 }
 
 const ispis = ()=>{
     let timeout = setTimeout(()=>{
-        let poruka = "Vitor Tomic: " + izjava() + "\t\t" + new Date().toLocaleString('en-US', { hour: 'numeric',minute:'numeric', hour12: true })
+        let poruka = messageGenerator.generateMessage();
         console.log(poruka);
         writeLog(poruka).then((success)=>{
             emmiter.emit('message',poruka);
@@ -50,6 +28,8 @@ const initialize = async ()=>{
     try{
         let exists = await fileExistsPromise();
         exists ? ispis() : await createFile();
+        //start web server
+        webServer.app.listen(9000);
         ispis();
     }
     catch(e){
