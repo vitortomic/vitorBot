@@ -1,4 +1,4 @@
-const random = ()=>{
+const coinToss = ()=>{
     let x = Math.random();
     return x >= 0.5 ? true : false;
 }
@@ -8,15 +8,15 @@ const randomInt = ()=>{
 }
 
 const izjava = ()=>{
-    return random() ? botara() : botara2();
+    return coinToss() ? botara() : botara2();
 }
 
 const botara = ()=>{
-    return random() ? ayy() : "Xd";  
+    return coinToss() ? ayy() : "Xd";  
 }
 
 const botara2 = ()=>{
-    return random() ? "rofl" : "ha" + "ha".repeat(randomInt())
+    return coinToss() ? "rofl" : "ha" + "ha".repeat(randomInt())
 }
 
 const ayy = ()=>{

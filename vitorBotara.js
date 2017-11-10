@@ -10,13 +10,13 @@ const randomVreme = ()=>{
     return Math.floor(10000 * Math.random());
 }
 
-const ispis = ()=>{
+const addMessage = ()=>{
     let timeout = setTimeout(()=>{
-        let poruka = messageGenerator.generateMessage();
-        console.log(poruka);
-        writeLog(poruka).then((success)=>{
-            emmiter.emit('message',poruka);
-            ispis();
+        let message = messageGenerator.generateMessage();
+        console.log(message);
+        writeLog(message).then((success)=>{
+            emmiter.emit('message',message);
+            addMessage();
         }, (error)=>{
             console.log('Error writing to log.txt');
             clearTimeout(timeout);
@@ -27,10 +27,10 @@ const ispis = ()=>{
 const initialize = async ()=>{
     try{
         let exists = await fileExistsPromise();
-        exists ? ispis() : await createFile();
+        exists ? addMessage() : await createFile();
         //start web server
         webServer.app.listen(9000);
-        ispis();
+        addMessage();
     }
     catch(e){
         console.log(e);
