@@ -13,7 +13,6 @@ app.get('/', (req,res)=>{
 app.get('/log', async (req,res)=>{
     try{
         let text = await getLogViaStream();
-        let textWithBreaks = text.split("")
         res.send(text);
     }
     catch(error){
