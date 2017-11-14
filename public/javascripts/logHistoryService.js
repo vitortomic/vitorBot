@@ -7,13 +7,10 @@ class LogHistoryService{
 }
 const getFormattedLog = async ()=>{
     let text = await getLogText();
-    return formatLogText(text);
+    return text;
 }
 const getLogText = ()=>{
     return fetch('/log')
     .then((response)=>response.text(), (error)=>console.log(error));
 } 
-const formatLogText = (text)=>{
-    return text;
-}
 export default LogHistoryService;

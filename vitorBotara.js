@@ -27,10 +27,7 @@ const addMessage = ()=>{
 const initialize = async ()=>{
     try{
         let exists = await fileExistsPromise();
-        exists ? addMessage() : await createFile();
-        //start web server
-        webServer.app.listen(9000);
-        addMessage();
+        exists ? addMessage() : await createFile(); webServer.app.listen(9000); addMessage();
     }
     catch(e){
         console.log(e);

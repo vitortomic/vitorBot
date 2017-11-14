@@ -1,6 +1,5 @@
 const coinToss = ()=>{
-    let x = Math.random();
-    return x >= 0.5 ? true : false;
+    return Math.random() >= 0.5;
 }
 
 const randomInt = ()=>{
